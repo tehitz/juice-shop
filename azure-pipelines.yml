@@ -11,6 +11,10 @@ resources:
 variables:
   tag: '$(Build.BuildId)'
 
+- script: 
+    docker build -t juice-shop .
+  displayName: 'build Docker image'
+
 stages:
 - stage: Build
   displayName: Build image
@@ -27,9 +31,7 @@ stages:
         dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
         tags: |
           $(tag)
-- script: 
-    docker build -t juice-shop .
-  displayName: 'build Docker image'
+
 - task: SnykSecurityScan@0
   inputs:
     serviceConnectionEndpoint: 'snyk'
