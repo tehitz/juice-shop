@@ -28,7 +28,7 @@ stages:
         tags: |
           $(tag)
 
-- stage: SnykSecurityScan@0
+- stage: SnykSecurityScan
   displayName: Snyk
   jobs:
     - job: Snyk
