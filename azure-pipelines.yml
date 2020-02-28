@@ -11,10 +11,6 @@ resources:
 variables:
   tag: '$(Build.BuildId)'
 
-- script: 
-    docker build -t juice-shop .
-  displayName: 'build Docker image'
-
 stages:
 - stage: Build
   displayName: Build image
@@ -40,3 +36,7 @@ stages:
     dockerfilePath: 'Dockerfile'
     monitorOnBuild: true
     failOnIssues: true
+
+- script: 
+    docker build -t juice-shop .
+  displayName: 'build Docker image'
