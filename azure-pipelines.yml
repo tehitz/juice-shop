@@ -28,15 +28,17 @@ stages:
         tags: |
           $(tag)
 
-- task: SnykSecurityScan@0
-  inputs:
-    serviceConnectionEndpoint: 'snyk'
-    testType: 'container'
-    dockerImageName: 'juice-shop'
-    dockerfilePath: 'Dockerfile'
-    monitorOnBuild: true
-    failOnIssues: true
-
-- script: 
-    docker build -t juice-shop .
-  displayName: 'build Docker image'
+- stage: SnykSecurityScan@0
+  displayName: Snyk
+  jobs:
+    - job: Snyk
+      displayName: Snyk
+      steps:
+      - task: SnykSecurityScan@0
+        inputs:
+          serviceConnectionEndpoint: 'snyk'
+          testType: 'container'
+          dockerImageName: 'juice-shop'
+          dockerfilePath: 'Dockerfile'
+          monitorOnBuild: true
+          failOnIssues: true
