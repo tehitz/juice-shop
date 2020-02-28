@@ -27,3 +27,14 @@ stages:
         dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
         tags: |
           $(tag)
+- script: 
+    docker build -t juice-shop .
+  displayName: 'build Docker image'
+- task: SnykSecurityScan@0
+  inputs:
+    serviceConnectionEndpoint: 'snyk'
+    testType: 'container'
+    dockerImageName: 'juice-shop'
+    dockerfilePath: 'Dockerfile'
+    monitorOnBuild: true
+    failOnIssues: true
