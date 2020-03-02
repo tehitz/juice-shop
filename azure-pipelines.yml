@@ -22,3 +22,12 @@ steps:
     dockerfilePath: 'Dockerfile'
     monitorOnBuild: true
     failOnIssues: true
+    
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'Free Trial (4da184ab-0b2d-4c68-81d7-4d872dd32a02)'
+    appType: 'webAppContainer'
+    WebAppName: 'juice-shop'
+    DockerNamespace: 'juice-shop'
+    DockerRepository: 'juice-shop'
