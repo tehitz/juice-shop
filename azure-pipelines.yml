@@ -10,7 +10,7 @@ resources:
 
 variables:
   tag: '$(Build.BuildId)'
-  imageName: 'pipelines-javascript-docker'
+  imageName: 'juice-shop'
 
 stages:
 - stage: Build
