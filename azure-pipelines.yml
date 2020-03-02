@@ -5,38 +5,20 @@
 trigger:
 - master
 
-resources:
-- repo: self
 
-variables:
-  tag: '$(Build.BuildId)'
-  imageName: 'juice-shop'
+pool:
+  vmImage: 'ubuntu-latest'
 
+steps:
 
-
-stages:
-- stage: Build
-  displayName: Build image
-  jobs:  
-  - job: Build
-    displayName: Build
-    pool:
-      vmImage: 'ubuntu-latest'
-    steps:
-    - script: 
-        docker build -t juice-shop .
-
-- stage: SnykSecurityScan
-  displayName: Snyk
-  jobs:
-    - job: Snyk
-      displayName: Snyk
-      steps:
-      - task: SnykSecurityScan@0
-        inputs:
-          serviceConnectionEndpoint: 'snyk'
-          testType: 'container'
-          dockerImageName: 'juice-shop'
-          dockerfilePath: 'Dockerfile'
-          monitorOnBuild: true
-          failOnIssues: true
+- script:
+    docker build -t juice-shop .
+  displayName: 'Build Docker image'
+- task: SnykSecurityScan@0
+  inputs:
+    serviceConnectionEndpoint: 'snyk'
+    testType: 'container'
+    dockerImageName: 'juice-shop'
+    dockerfilePath: 'Dockerfile'
+    monitorOnBuild: true
+    failOnIssues: true
