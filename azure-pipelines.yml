@@ -40,7 +40,7 @@ stages:
         inputs:
           serviceConnectionEndpoint: 'snyk'
           testType: 'container'
-          dockerImageName: 'juice-shop:22'
+          dockerImageName: 'juice-shop:$(tag)'
           dockerfilePath: 'Dockerfile'
           monitorOnBuild: true
           failOnIssues: true
