@@ -29,5 +29,5 @@ RUN mkdir logs && \
     chgrp -R 0 ftp/ frontend/dist/ logs/ data/ i18n/ && \
     chmod -R g=u ftp/ frontend/dist/ logs/ data/ i18n/
 USER juicer
-EXPOSE 80
+EXPOSE 3000
 CMD ["npm", "start"]
