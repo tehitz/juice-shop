@@ -2,6 +2,5 @@ version: "3"
 services:
     web:
         image: 'juice-shop'
-            restart: "no"
         ports:
-            - "80:3000" 
+        - "80:3000" 
