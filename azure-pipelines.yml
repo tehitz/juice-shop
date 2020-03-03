@@ -23,12 +23,11 @@ steps:
     monitorOnBuild: true
     failOnIssues: true
     
-- task: AzureRmWebAppDeployment@4
+- task: DockerCompose@0
+  displayName: 'Start NATS Services'
   inputs:
-    azureSubscription: 'Free Trial (4da184ab-0b2d-4c68-81d7-4d872dd32a02)'
-    ConnectionType: 'AzureRM'
-    appType: 'webAppContainer'
-    WebAppName: 'juice-shop'
-    DockerNamespace: 'juice-shop'
-    DockerRepository: 'juice-shop' 
+    containerregistrytype: 'Container Registry'
+    dockerComposeFile: 'docker-compose.yml'
+    action: 'Run a Docker Compose command'
+    dockerComposeCommand: 'up -d'
 
