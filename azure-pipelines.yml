@@ -28,6 +28,6 @@ steps:
   inputs:
     action: Build services
     azureSubscription: 'Free Trial (4da184ab-0b2d-4c68-81d7-4d872dd32a02)'
-    dockerComposeFile: docker-compose.yml
+    dockerComposeFile: 'docker-compose.yml'
     projectName: juice-shop
     qualifyImageNames: true
